@@ -15,17 +15,15 @@ export default {
     
     return {
       titulo: 'Alurapic',
-      fotos: [
-        {
-          url:'src/img/batman.png',
-          titulo: 'batman'
-        },
-        {
-          url: 'src/img/batman2.png',
-          titulo: 'batman2'
-        }
-      ]
+      fotos: []
     }
+  },
+
+  created() {
+    
+    this.$http.get('http://localhost:3000/v1/fotos') /*realiza requisição http para API*/
+    .then(res => res.json()) /*converte o resultado para json*/
+    .then(foto => this.fotos = foto); /*atribui o resultado para o objeto fotos[]*/
   }
 }
 </script>
