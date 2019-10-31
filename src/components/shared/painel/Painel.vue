@@ -1,9 +1,11 @@
 <template>
   <div class="painel">
     <h2 class="painel-titulo" @dblclick ="visivel = !visivel">{{ titulo }}</h2>
-    <div class="painel-conteudo" v-show="visivel">
-      <slot></slot>
-    </div>
+    <transition name="painel-fate">
+      <div class="painel-conteudo" v-show="visivel">
+        <slot></slot>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -48,4 +50,17 @@ export default {
   * {
     box-shadow: 5px 5px 5px;
   }
+
+  .painel-fate-enter, .painel-fate-leave-active {
+    opacity: 0;
+  }
+
+  .painel-fate-enter-active, .painel-fate-leave-active {
+    transition: opacity .4s;
+  }
+// O componente transition adiciona dinamicamente nos seus elementos filhos as seguintes classes dinamicamente:
+
+// painel-fade-enter // antes do elemento ser incluído ou removido, o estado atual
+// painel-fade-enter-active // quando o elemento esta sendo incluído
+// painel-fade-leave-active // quando o elemento esta sendo removido
 </style>
